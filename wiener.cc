@@ -7,7 +7,7 @@
 // Dane wejściowe:
 // 1. Liczba n = pq; p > q; p, q pierwsze.
 // 2. Liczba e względnie pierwsza z L = NWW(p - 1, q - 1). 
-//    (Można też przyjąć L = (p - 1)(q -1))
+//    (Można też przyjąć L = (p - 1)(q - 1))
 // Wynik:
 // 1. Liczba d ≡ e^-1 (mod L)
 // 2. Liczby p, q.
