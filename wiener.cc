@@ -1,34 +1,34 @@
 // Copyright © 2006-2018 Jakub Wilk <jwilk@jwilk.net>
 // SPDX-License-Identifier: MIT
 //
-// Implementacja ataku Wienera na RSA, na podstawie:
+// Implementation of Wiener's attack against RSA, based on:
 // M.J. Wiener, “Cryptanalysis of Short RSA Secret Exponents”
 // <http://www3.sympatico.ca/wienerfamily/Michael/MichaelPapers/ShortSecretExponents.pdf>
 //
-// Dane wejściowe:
-// 1. Liczba n = pq; p > q; p, q pierwsze.
-// 2. Liczba e względnie pierwsza z L = NWW(p - 1, q - 1).
-//    (Można też przyjąć L = (p - 1)(q - 1))
-// Wynik:
-// 1. Liczba d ≡ e^-1 (mod L)
-// 2. Liczby p, q.
+// Input:
+// 1. Number n = pq; p > q; p, q are prime.
+// 2. Number e co-prime with L = lcm(p - 1, q - 1).
+//    (Alternatively, L = (p - 1)(q - 1))
+// Output:
+// 1. Number d ≡ e^-1 (mod L)
+// 2. Numbers p, q.
 //
-// Przy założeniu, że L = (p-1)(q-1), q < p < 2q, atak udaje się jeżeli
+// Assuming that L = (p-1)(q-1), q < p < 2q, the attach succeeds if
 // d < (n^0.25)/3, e < n, ed > n.
 //
-// Główna idea:
-//   Niech
+// The main idea:
+//   Let
 //     G = (p-1)(q-1) / L,
 //     K = (de-1) / L.
-//   Niech
-//     g = G / NWD(G, K),
-//     k = K / NWD(G, K).
-//   Wtedy
+//   Let
+//     g = G / gcd(G, K),
+//     k = K / gcd(G, K).
+//   Then
 //     edg = k(p - 1)(q -1) + 1,
 //     e / n = (k / dg) * (1 - t),
-//   gdzie
+//   where
 //     t = 1/p + 1/q + 1/pq.
-//   Ponieważ t jest małe, dobrym przybliżeniem k / dg jest e / n.
+//   Because t is small, e / n is a good approximation for k / dg.
 
 #include <iostream>
 #include <cstdlib>
@@ -94,8 +94,8 @@ int main(int argc, char **argv)
     return EXIT_FAILURE;
   }
   integer m = sharpened ? (n - sqrt(4*n) + 1) : n;
-  // m: dobre przybliżenie (p-1)(q-1) = pq - p - q + 1 < m:
-  // · pq, lub
+  // m: a good approximation of (p-1)(q-1) = pq - p - q + 1 < m:
+  // · pq, or
   // · floor(pq - 2sqrt(pq) + 1)
   assert(m >= 4);
 
@@ -109,7 +109,7 @@ int main(int argc, char **argv)
     F_num_prev, F_den_prev,
     F_num_pprev, F_den_pprev;
     // F ≈ e/m;
-    // F = [..., Q', Q]     lub
+    // F = [..., Q', Q]     or
     //   = [..., Q', Q + 1]
   for (unsigned int i = 0; ; i++)
   {
@@ -170,10 +170,10 @@ int main(int argc, char **argv)
     integer phi_n, g;
     if (k == 0)
       break;
-    // edg = k(p-1)(q-1) + g, więc:
+    // edg = k(p-1)(q-1) + g, therefore:
     //   (p-1)(q-1) = edg div k,
     //   g = edg mod k,
-    // o ile tylko k > g (na co wystarczy, żeby ed > n):
+    // if k > g (which is implied by ed > n):
     divmod(phi_n, g, e * dg, k);
     if (verbose)
     {
