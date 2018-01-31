@@ -16,4 +16,4 @@ test: wiener
 clean:
 	rm -f wiener
 
-# vim:ts=4
+# vim:ts=4 sts=4 sw=4 noet
