@@ -4,16 +4,16 @@
 // Implementacja ataku Wienera na RSA, na podstawie:
 // M.J. Wiener, “Cryptanalysis of Short RSA Secret Exponents”
 // <http://www3.sympatico.ca/wienerfamily/Michael/MichaelPapers/ShortSecretExponents.pdf>
-//  
+//
 // Dane wejściowe:
 // 1. Liczba n = pq; p > q; p, q pierwsze.
-// 2. Liczba e względnie pierwsza z L = NWW(p - 1, q - 1). 
+// 2. Liczba e względnie pierwsza z L = NWW(p - 1, q - 1).
 //    (Można też przyjąć L = (p - 1)(q - 1))
 // Wynik:
 // 1. Liczba d ≡ e^-1 (mod L)
 // 2. Liczby p, q.
 //
-// Przy założeniu, że L = (p-1)(q-1), q < p < 2q, atak udaje się jeżeli 
+// Przy założeniu, że L = (p-1)(q-1), q < p < 2q, atak udaje się jeżeli
 // d < (n^0.25)/3, e < n, ed > n.
 //
 // Główna idea:
@@ -54,8 +54,8 @@ inline void divmod(integer &q, integer &r, const integer &n, const integer &d)
 
 inline void usage()
 {
-  cerr << 
-    "weiner [-v] [-s] <n> <e>" << endl << 
+  cerr <<
+    "weiner [-v] [-s] <n> <e>" << endl <<
     "  <n>  modulus" << endl <<
     "  <e>  private exponent" << endl << endl;
   exit(EXIT_FAILURE);
@@ -72,7 +72,7 @@ int main(int argc, char **argv)
     for (arg = *argv + 1; *arg >= 'a' && *arg <= 'z'; arg++)
       switch (*arg)
       {
-        case 'v': 
+        case 'v':
           verbose++;
           break;
         case 's':
@@ -93,20 +93,20 @@ int main(int argc, char **argv)
     cerr << "Invalid parameters" << endl;
     return EXIT_FAILURE;
   }
-  integer m = sharpened ? (n - sqrt(4*n) + 1) : n; 
+  integer m = sharpened ? (n - sqrt(4*n) + 1) : n;
   // m: dobre przybliżenie (p-1)(q-1) = pq - p - q + 1 < m:
   // · pq, lub
   // · floor(pq - 2sqrt(pq) + 1)
   assert(m >= 4);
-  
-  integer 
+
+  integer
     Q, Q_prev,
     // e/m = [..., Q', Q, ...]
-    R_num, R_den, 
+    R_num, R_den,
     R_num_prev, R_den_prev,
     // R = e/m - [..., Q', Q]
-    F_num, F_den, 
-    F_num_prev, F_den_prev, 
+    F_num, F_den,
+    F_num_prev, F_den_prev,
     F_num_pprev, F_den_pprev;
     // F ≈ e/m;
     // F = [..., Q', Q]     lub
@@ -131,7 +131,7 @@ int main(int argc, char **argv)
       k = Q;
       dg = 1;
     }
-    else 
+    else
     {
       if (R_num_prev == 0)
         break;
