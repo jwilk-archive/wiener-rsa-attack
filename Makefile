@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -O3 -s
+CXXFLAGS = -O3 -g
 LDFLAGS = -lgmp -lgmpxx
 
 .PHONY: all
