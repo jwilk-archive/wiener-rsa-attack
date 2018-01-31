@@ -1,4 +1,4 @@
-// Copyright © 2006 Jakub Wilk <j.wilk@students.mimuw.edu.pl>
+// Copyright © 2006 Jakub Wilk <jwilk@jwilk.net>
 //
 // Implementacja ataku Wienera na RSA, na podstawie:
 // M.J. Wiener, “Cryptanalysis of Short RSA Secret Exponents”
