@@ -1,4 +1,3 @@
-CXX = g++
 CXXFLAGS ?= -O3 -g
 CXXFLAGS += -Wall
 LDLIBS += -lgmp -lgmpxx
