@@ -1,21 +1,21 @@
-// Copyright (c) 2006 Jakub Wilk <j.wilk@students.mimuw.edu.pl>
+// Copyright ¬© 2006 Jakub Wilk <j.wilk@students.mimuw.edu.pl>
 //
 // Implementacja ataku Wienera na RSA, na podstawie:
-// M.J. Wiener, ``Cryptanalysis of Short RSA Secret Exponents''
+// M.J. Wiener, ‚ÄúCryptanalysis of Short RSA Secret Exponents‚Äù
 // <http://www3.sympatico.ca/wienerfamily/Michael/MichaelPapers/ShortSecretExponents.pdf>
 //  
-// Dane wej∂ciowe:
+// Dane wej≈õciowe:
 // 1. Liczba n = pq; p > q; p, q pierwsze.
-// 2. Liczba e wzglÍdnie pierwsza z L = NWW(p - 1, q - 1). 
-//    (Moøna teø przyj±Ê L = (p - 1)(q -1))
+// 2. Liczba e wzglƒôdnie pierwsza z L = NWW(p - 1, q - 1). 
+//    (Mo≈ºna te≈º przyjƒÖƒá L = (p - 1)(q -1))
 // Wynik:
-// 1. Liczba d == e^-1 (mod L)
+// 1. Liczba d ‚â° e^-1 (mod L)
 // 2. Liczby p, q.
 //
-// Przy za≥oøeniu, øe L = (p-1)(q-1), q < p < 2q, atak udaje siÍ jeøeli 
+// Przy za≈Ço≈ºeniu, ≈ºe L = (p-1)(q-1), q < p < 2q, atak udaje siƒô je≈ºeli 
 // d < (n^0.25)/3, e < n, ed > n.
 //
-// G≥Ûwna idea:
+// G≈Ç√≥wna idea:
 //   Niech
 //     G = (p-1)(q-1) / L,
 //     K = (de-1) / L.
@@ -27,7 +27,7 @@
 //     e / n = (k / dg) * (1 - t),
 //   gdzie
 //     t = 1/p + 1/q + 1/pq.
-//   Poniewaø t jest ma≥e, dobrym przybliøeniem k / dg jest e / n.
+//   Poniewa≈º t jest ma≈Çe, dobrym przybli≈ºeniem k / dg jest e / n.
 
 #include <iostream>
 #include <cstdlib>
@@ -93,9 +93,9 @@ int main(int argc, char **argv)
     return EXIT_FAILURE;
   }
   integer m = sharpened ? (n - sqrt(4*n) + 1) : n; 
-  // m: dobre przybliøenie (p-1)(q-1) = pq - p - q + 1 < m:
-  // . pq, lub
-  // . floor(pq - 2sqrt(pq) + 1)
+  // m: dobre przybli≈ºenie (p-1)(q-1) = pq - p - q + 1 < m:
+  // ¬∑ pq, lub
+  // ¬∑ floor(pq - 2sqrt(pq) + 1)
   assert(m >= 4);
   
   integer 
@@ -107,7 +107,7 @@ int main(int argc, char **argv)
     F_num, F_den, 
     F_num_prev, F_den_prev, 
     F_num_pprev, F_den_pprev;
-    // F ~= e/m;
+    // F ‚âà e/m;
     // F = [..., Q', Q]     lub
     //   = [..., Q', Q + 1]
   for (unsigned int i = 0; ; i++)
@@ -169,10 +169,10 @@ int main(int argc, char **argv)
     integer phi_n, g;
     if (k == 0)
       break;
-    // edg = k(p-1)(q-1) + g, wiÍc:
+    // edg = k(p-1)(q-1) + g, wiƒôc:
     //   (p-1)(q-1) = edg div k,
     //   g = edg mod k,
-    // o ile tylko k > g (na co wystarczy, øeby ed > n):
+    // o ile tylko k > g (na co wystarczy, ≈ºeby ed > n):
     divmod(phi_n, g, e * dg, k);
     if (verbose)
     {
@@ -228,4 +228,4 @@ int main(int argc, char **argv)
   return EXIT_FAILURE;
 }
 
-// vim:ts=2 sw=2 et fenc=iso-8859-2
+// vim:ts=2 sw=2 et
