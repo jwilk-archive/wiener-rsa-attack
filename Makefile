@@ -12,7 +12,7 @@ wiener: wiener.cc
 
 .PHONY: test
 test: wiener
-	./wiener-test
+	test/run
 
 .PHONY: clean
 clean:

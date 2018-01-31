@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# Copyright © 2006-2018 Jakub Wilk <jwilk@jwilk.net>
+# SPDX-License-Identifier: MIT
+
+here=${0%/*}
+while read line
+do
+  "$here/../wiener" "$@" -s $line
+done < "$here/data"
+
+# vim:ts=2 sts=2 sw=2 et
