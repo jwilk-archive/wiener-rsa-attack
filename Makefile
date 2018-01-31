@@ -7,7 +7,6 @@ LDFLAGS = -lgmp -lgmpxx
 all: wiener
 
 wiener: wiener.cc
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(<) -o $(@)
 
 .PHONY: test
 test: wiener
