@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS ?= -O3 -g
 CXXFLAGS += -Wall
-LDFLAGS = -lgmp -lgmpxx
+LDLIBS += -lgmp -lgmpxx
 
 .PHONY: all
 all: wiener
