@@ -1,4 +1,5 @@
-// Copyright © 2006 Jakub Wilk <jwilk@jwilk.net>
+// Copyright © 2006-2018 Jakub Wilk <jwilk@jwilk.net>
+// SPDX-License-Identifier: MIT
 //
 // Implementacja ataku Wienera na RSA, na podstawie:
 // M.J. Wiener, “Cryptanalysis of Short RSA Secret Exponents”

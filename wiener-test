@@ -1,4 +1,8 @@
 #!/bin/sh
+
+# Copyright © 2006-2018 Jakub Wilk <jwilk@jwilk.net>
+# SPDX-License-Identifier: MIT
+
 while read line
 do
   ./wiener "$@" -s $line

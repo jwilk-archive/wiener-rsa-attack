@@ -1,3 +1,6 @@
+# Copyright © 2006-2018 Jakub Wilk <jwilk@jwilk.net>
+# SPDX-License-Identifier: MIT
+
 CXXFLAGS ?= -O3 -g
 CXXFLAGS += -Wall
 LDLIBS += -lgmp -lgmpxx
