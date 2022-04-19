@@ -13,7 +13,7 @@
 // 1. Number d ≡ e^-1 (mod L)
 // 2. Numbers p, q.
 //
-// Assuming that L = (p-1)(q-1), q < p < 2q, the attach succeeds if
+// Assuming that L = (p-1)(q-1), q < p < 2q, the attack succeeds if
 // d < (n^0.25)/3, e < n, ed > n.
 //
 // The main idea:
